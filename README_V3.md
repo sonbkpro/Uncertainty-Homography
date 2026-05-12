@@ -33,6 +33,7 @@ scripts_v3/
   train_v3.py
   eval_v3_labeled_points.py
   smoke_test_v3.py
+  visualize_alignment_v3.py
   visualize_static_support.py
 
 configs/train_v3.yaml
@@ -103,6 +104,33 @@ num_pairs              number of labeled validation pairs
 ```
 
 ## Visualization
+
+V1-compatible alignment visualization for evaluation checks:
+
+```bash
+python scripts_v3/visualize_alignment_v3.py \
+  --ckpt runs/v3_dominant_temporal_support/last.pt \
+  --image_a path/to/a.jpg \
+  --image_b path/to/b.jpg \
+  --out_prefix vis/v3_example
+```
+
+Outputs:
+
+```text
+vis/v3_example_overlay.png
+vis/v3_example_mask_a.png
+vis/v3_example_mask_b.png
+vis/v3_example_warped_a.png
+vis/v3_example_support_a_patch.png
+vis/v3_example_support_b_patch.png
+vis/v3_example_support_init.png
+vis/v3_example_support_final.png
+vis/v3_example_support_a_full.png
+vis/v3_example_support_b_full.png
+```
+
+Static-support patch visualization:
 
 ```bash
 python scripts_v3/visualize_static_support.py \
