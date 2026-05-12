@@ -29,7 +29,7 @@ def main():
     img1, img2 = cv2.imread(args.image_a), cv2.imread(args.image_b)
     sample = build_oneline_sample(img1, img2, 315, 560, None, crop_xy=(40, 23))
     model = DominantHomographyV3Net().to(device)
-    load_checkpoint(args.ckpt, model, device=device)
+    load_checkpoint(args.ckpt, model, map_location=device)
     model.eval()
     with torch.no_grad():
         out = model.forward_oneline(

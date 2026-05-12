@@ -26,7 +26,7 @@ def main():
     args = p.parse_args()
     device = torch.device(args.device if args.device == 'cpu' or torch.cuda.is_available() else 'cpu')
     model = DominantHomographyV3Net().to(device)
-    load_checkpoint(args.ckpt, model, device=device)
+    load_checkpoint(args.ckpt, model, map_location=device)
     ds = LabeledPointPairsDataset(args.npy_dir, args.image_root, args.crop_h, args.crop_w,
                                   args.img_h, args.img_w, args.eval_crop_x, args.eval_crop_y)
     print(evaluate_labeled_points_v3(model, ds, device, max_points=args.max_points))
